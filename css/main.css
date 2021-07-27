@@ -341,3 +341,78 @@ select {
     appearance: none;       /* Remove default arrow */
     background-image: url(images/arrow_down.png);   /* Add custom arrow */
 }
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background-color: linear-gradient(to right, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
+    background-insets: 0;
+    background-radius: 0;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-track:vertical {
+    background-color: linear-gradient(to right, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
+}
+
+::-webkit-scrollbar-track:horizontal {
+    background-color: linear-gradient(to bottom, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /*background-image: url(../../gui/images/thumb.png);*/
+    background-color: rgb(101, 88, 65);
+    inset: 0;
+    border-radius: 3px;
+    border-color: #1e1e1c;
+    /*border-color: black;*/
+    border-width: 2px;
+    //box-shadow: inset 9 0.3 -1 -1 rgba(0, 0, 0, 0.5);
+    //effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 9, 0.3, -1, -1);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* Buttons */
+
+/* Up */
+::-webkit-scrollbar-button:single-button:vertical:decrement {
+    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_up.png);
+}
+
+/* Down */
+::-webkit-scrollbar-button:single-button:vertical:increment {
+    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_down.png);
+}
+
+/* Left */
+::-webkit-scrollbar-button:single-button:horizontal:decrement {
+    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_left.png);
+}
+
+/* Right */
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_right.png);
+}
+
+::-webkit-scrollbar-button:single-button:vertical:decrement,
+::-webkit-scrollbar-button:single-button:vertical:increment,
+::-webkit-scrollbar-button:single-button:horizontal:decrement
+::-webkit-scrollbar-button:single-button:horizontal:increment {
+    background-size: cover;
+    height: 24px;
+    width: 24px;
+}
+
