@@ -46,8 +46,8 @@ export class Position {
         var endLatLng = new Position(this.x + 1, this.y + 1, this.z).toLatLng(map)
 
         return L.rectangle(L.latLngBounds(startLatLng, endLatLng), {
-            color: "#33b5e5",
-            fillColor: "#33b5e5",
+            color: "#ff981f",
+            fillColor: "#ff981f",
             fillOpacity: 1.0,
             weight: 1,
             interactive: false

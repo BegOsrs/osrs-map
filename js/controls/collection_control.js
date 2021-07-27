@@ -110,17 +110,17 @@ export var CollectionControl = L.Control.extend({
         });
 
         // Area control
-        this._createControl('<img src="/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function(e) {
+        this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function(e) {
             this._toggleCollectionMode(this._areas, "areas_converter", e.target);
-        });        
+        });
 
         // Poly Area control
-        this._createControl('<img src="/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function(e) {
+        this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function(e) {
             this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target);
         });
 
         // Path control
-        this._createControl('<img src="/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function(e) {
+        this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function(e) {
             this._toggleCollectionMode(this._path, "path_converter", e.target);
         });
 

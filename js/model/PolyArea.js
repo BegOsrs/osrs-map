@@ -67,7 +67,7 @@ export class PolyArea {
 
         return L.polygon(
             latLngs, {
-                color: "#33b5e5",
+                color: "#ff981f",
                 weight: 1,
                 interactive: false
             }

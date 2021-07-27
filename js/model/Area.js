@@ -38,7 +38,7 @@ export class Area {
                 newStartPosition.toLatLng(map),
                 newEndPosition.toLatLng(map)
             ), {
-                color: "#33b5e5",
+                color: "#ff981f",
                 weight: 1,
                 interactive: false
             }
