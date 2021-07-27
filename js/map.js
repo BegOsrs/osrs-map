@@ -53,18 +53,23 @@ $(document).ready(function () {
     map.updateMapPath();
     map.getContainer().focus();
 
-    //map.addControl(new TitleLabel());
-    map.addControl(new CoordinatesControl());
-    /*map.addControl(new RegionBaseCoordinatesControl());*/
-    /*map.addControl(new LocalCoordinatesControl());*/
-    map.addControl(L.control.zoom());
-    map.addControl(new PlaneControl());
-    map.addControl(new LocationLookupControl());
-    map.addControl(new MapLabelControl());
-    map.addControl(new CollectionControl({ position: 'topright' }));
-    map.addControl(new RegionLookupControl());
-    map.addControl(new GridControl());
-    map.addControl(new RegionLabelsControl());
+    const urlParams = new URLSearchParams(window.location.search);
+    const mode = urlParams.get('mode');
+    if (mode !== '2') {
+        //map.addControl(new TitleLabel());
+        map.addControl(new CoordinatesControl());
+        /*map.addControl(new RegionBaseCoordinatesControl());*/
+        /*map.addControl(new LocalCoordinatesControl());*/
+        map.addControl(L.control.zoom());
+        map.addControl(new PlaneControl());
+        map.addControl(new LocationLookupControl());
+        map.addControl(new MapLabelControl());
+        map.addControl(new CollectionControl({ position: 'topright' }));
+        map.addControl(new RegionLookupControl());
+        map.addControl(new GridControl());
+        map.addControl(new RegionLabelsControl());
+    }
+
 
     var prevMouseRect, prevMousePos;
     map.on('mousemove', function (e) {
@@ -84,12 +89,16 @@ $(document).ready(function () {
     });
 
     const setUrlParams = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const mode = urlParams.get('mode');
+        let modeUrl = mode ? `mode=${mode}&` : '';
+
         const mapCentre = map.getBounds().getCenter()
         const centrePos = Position.fromLatLng(map, mapCentre, map.plane);
 
         const zoom = map.getZoom();
 
-        window.history.replaceState(null, null, `?centreX=${centrePos.x}&centreY=${centrePos.y}&centreZ=${centrePos.z}&zoom=${zoom}`);
+        window.history.replaceState(null, null, `?${modeUrl}centreX=${centrePos.x}&centreY=${centrePos.y}&centreZ=${centrePos.z}&zoom=${zoom}`);
     };
 
     map.on('move', setUrlParams);
