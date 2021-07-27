@@ -1,9 +1,6 @@
-# Explv.github.io
+# Osrs map
 
-### Dax Path
-
-The Dax Path tool makes use of @itsdax great web walking API https://github.com/itsdax/Runescape-Web-Walker-Engine
-All credits to him.
+A stripped down version of <a href="explv.github.io" title="explv.github.io">explv.github.io</a>.
 
 ### Generating map tiles
 

@@ -55,14 +55,11 @@ html, body {
 
 #titleLabel {
     font-size: 28px;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 15px;
 }
 
-#explv {
-    color: #33b5e5;
+.title {
+    color: #33b5e5
 }
 
 #output-container select {
@@ -87,7 +84,7 @@ html, body {
     position: absolute;
     z-index: 3;
     padding: 5px;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
     border-radius: 4px;
     background-color: #121212;
     color: #FFFFFF;
@@ -103,7 +100,7 @@ html, body {
     padding-top: 10px;
     padding-left: 10px;
     z-index: 2;
-    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.65);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
     border-radius: 4px;
     background-color: white;
     display: none;
@@ -127,7 +124,7 @@ input.leaflet-control-custom {
     color: white;
     border: none;
     border-right: 1px solid white;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 .coord:last-child {

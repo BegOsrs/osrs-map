@@ -3,7 +3,6 @@
 import {Position} from '../model/Position.js';
 import {Area} from '../model/Area.js';
 import {Path} from '../model/Path.js';
-import {DaxPath} from '../model/DaxPath.js';
 import {Areas} from '../model/Areas.js';
 import {PolyArea} from '../model/PolyArea.js';
 
@@ -73,7 +72,6 @@ export var CollectionControl = L.Control.extend({
 
     onAdd: function (map) {
         this._path = new Path(this._map);
-        this._daxPath = new DaxPath(this._map);
         this._areas = new Areas(this._map);
         this._polyArea = new PolyArea(this._map);
 
@@ -126,11 +124,6 @@ export var CollectionControl = L.Control.extend({
             this._toggleCollectionMode(this._path, "path_converter", e.target);
         });
 
-        // Dax Path control
-        this._createControl('<img src="/css/images/dax-path-icon.png" alt="Dax Path" title="Dax Path" height="25" width="30">', container, function(e) {
-            this._toggleCollectionMode(this._daxPath, "path_converter", e.target);
-        });
-
         // Undo control
         this._createControl('<i class="fa fa-undo" aria-hidden="true"></i>', container, function(e) {
             if (this._currentDrawable !== undefined) {
@@ -174,12 +167,7 @@ export var CollectionControl = L.Control.extend({
 
         var position = Position.fromLatLng(this._map, e.latlng, this._map.plane);
 
-        if (this._currentDrawable instanceof DaxPath) {
-            let self = this;
-            this._currentDrawable.add(position, function() {
-                self._outputCode();
-            });
-        } else if (this._currentDrawable instanceof Areas) {
+        if (this._currentDrawable instanceof Areas) {
             if (this._firstSelectedAreaPosition === undefined) {
                 this._firstSelectedAreaPosition = position;
             } else {
