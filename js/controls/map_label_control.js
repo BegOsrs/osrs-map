@@ -95,7 +95,7 @@ export var MapLabelControl = L.Control.extend({
 
         var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
         container.style.background = 'none';
-        container.style.width = '100px';
+        container.style.width = '130px';
         container.style.height = 'auto';
 
         var labelsButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);

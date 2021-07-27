@@ -9,25 +9,24 @@ export var LocationLookupControl = L.Control.extend({
     },
 
     onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         container.style.background = 'none';
-        container.style.width = '200px';
+        container.style.width = '130px';
         container.style.height = 'auto';
 
-        var locationInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+        const locationInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         locationInput.id = 'location-lookup';
         locationInput.type = 'text';
         locationInput.placeholder = "Go to location";
 
-        var self = this;
+        const self = this;
         Locations.getLocations(function(locations) {
-            var locationsArray = $.map(locations, function (value, key) {
+            self.locations = $.map(locations, function (value, key) {
                 return {
                     label: value.name,
                     value: value.position
                 }
             });
-            self.locations = locationsArray;
         });
 
         $(locationInput).autocomplete({
@@ -63,7 +62,7 @@ export var LocationLookupControl = L.Control.extend({
 
         this._map.panTo(this._searchMarker.getLatLng());
 
-        if (this._map.plane != z) {
+        if (this._map.plane !== z) {
             this._map.plane = z;
             this._map.updateMapPath();
         }

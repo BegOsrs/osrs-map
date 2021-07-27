@@ -14,7 +14,7 @@ export var RegionLookupControl = L.Control.extend({
         container.style.width = '130px';
         container.style.height = 'auto';
 
-        var regionIDInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+        var regionIDInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom region-input', container);
         regionIDInput.id = 'region-lookup';
         regionIDInput.type = 'number';
         regionIDInput.placeholder = "Go to region";

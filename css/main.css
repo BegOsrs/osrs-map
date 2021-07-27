@@ -1,6 +1,6 @@
 @font-face {
-    font-family: zrnic;
-    src: url(fonts/zrnic.ttf);
+    font-family: runescape;
+    src: url(fonts/runescape.ttf);
 }
 
 html, body {
@@ -15,11 +15,58 @@ html, body {
     height: 100%;
 }
 
+.ui-autocomplete-input, .region-input {
+    /*text-align: center;*/
+}
+
+.ui-autocomplete-input:hover, .region-input:hover {
+    background-color: rgb(61, 54, 43) !important;
+}
+
 .ui-autocomplete {
     z-index: 2000;
-    border: 1px solid #ffffff;
-    background-color: #121212;
-    color: #ffffff;
+    border: 1px solid #4d493c;
+    background-color: rgb(70, 60, 49);
+    color: #ff981f;
+}
+
+.ui-menu {
+    border: 1px solid black !important;
+    font-size: 12px;
+}
+
+.ui-autocomplete > li:nth-child(even) {
+    background-color: rgb(71, 63, 54);
+}
+.ui-autocomplete > li:nth-child(odd) {
+    background-color: rgb(64, 57, 49);
+}
+
+.ui-state-active:first-child {
+    color: #ff981f !important;
+    background: rgb(61, 54, 43) !important;
+    border: 1px solid black !important;
+}
+
+*:focus-visible {
+    outline: none;
+}
+
+/*.ui-menu:even {
+    background-color: rgb(71, 63, 54);
+}
+
+.ui-menu:odd {
+    background-color: rgb(64, 57, 49);
+}*/
+
+.leaflet-control-attribution.leaflet-control {
+    display: none;
+    color: #ff981f !important;
+}
+
+.leaflet-control-attribution.leaflet-control a {
+    color: #ff981f !important;
 }
 
 .map-label p {
@@ -41,7 +88,7 @@ html, body {
 }
 
 #pageHeader h1 {
-    font-family: zrnic;
+    font-family: runescape;
     margin: 0;
     padding-top: 0.15%;
     text-align: center;
@@ -59,12 +106,12 @@ html, body {
 }
 
 .title {
-    color: #33b5e5
+    color: #ff981f
 }
 
 #output-container select {
     background: none;
-    border: 1px solid #33b5e5;
+    border: 1px solid #ff981f;
     color: #FFFFFF;
     max-width: 200px;
 }
@@ -121,14 +168,20 @@ input.leaflet-control-custom {
     height: auto;
     text-align: center;
     background: none !important;
-    color: white;
+    color: #ff981f;
     border: none;
-    border-right: 1px solid white;
+    border-right: 1px solid #4d493c;
     border-radius: 0;
 }
 
 .coord:last-child {
     border: none;
+}
+
+.form-control:focus {
+    border-color: #4d493c !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
 }
 
 #edit-text {
@@ -146,7 +199,7 @@ input.leaflet-control-custom {
 #output-container {
     padding: 0;
     background-color: #121212;
-    border-right: 1px solid #FFFFFF;
+    border-right: 1px solid #4d493c;
 }
 
 #output-container .panel-default {
@@ -183,8 +236,8 @@ input.leaflet-control-custom {
     right: 80px;
     z-index: 1000;
     height: 210px;
-    width: 330px;
-    background-color: #121212;
+    width: 250px;
+    background-color: #3e3529;
     border-radius: 3px;
     max-height: 210px;
 }
@@ -192,18 +245,18 @@ input.leaflet-control-custom {
 #settings-panel {
     justify-content: center;
     align-items: center;
-    color:white;
+    color: #ff981f;
 }
 
 #code-output-pre {
     padding: 10px;
-    background-color: #121212;
+    background-color: #3e3529;
     border: none;
     border-radius: 0;
     margin: 0;
-    overflow-y:auto;
+    overflow-y: auto;
     max-height: 210px;
-    color: white;
+    color: #ff981f;
 }
 
 #map-container {
@@ -221,8 +274,8 @@ input.leaflet-control-custom {
 }
 
 .leaflet-control {
-    background-color: #121212 !important;
-    border: 1px solid white !important;
+    background-color: #3e3529 !important;
+    border: 1px solid black !important;
     color: white !important;
 }
 
@@ -231,8 +284,8 @@ input.leaflet-control-custom {
     width: 100% !important;
     border: none !important;
     border-radius: 0 0 0 0;
-    border-bottom: 1px solid #ccc !important;
-    background-color: #fff;
+    border-bottom: 1px solid black !important;
+    background-color: #3e3529;
 }
 
 .leaflet-control-custom:last-child {
@@ -243,11 +296,19 @@ a.leaflet-control-custom {
     cursor: pointer;
 }
 
+.leaflet-control-zoom-in {
+    border-bottom: 1px solid black !important;
+}
+
+.leaflet-control-custom, .leaflet-control-zoom-in, .leaflet-control-zoom-out {
+    color: #ff981f !important;
+}
+
 a.leaflet-control-custom.active,
 a.leaflet-control-custom:hover,
 a.leaflet-control-zoom-in:hover,
 a.leaflet-control-zoom-out:hover {
-    background-color: rgb(77, 77, 77) !important;
+    background-color: #4d493c !important;
 }
 
 input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
@@ -267,4 +328,16 @@ input[type="number"] {
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
+}
+
+.leaflet-bar .leaflet-control .noselect {
+    display: inline-block !important;
+    float: none !important;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;       /* Remove default arrow */
+    background-image: url(images/arrow_down.png);   /* Add custom arrow */
 }
