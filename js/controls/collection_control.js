@@ -108,15 +108,15 @@ export var CollectionControl = L.Control.extend({
         container.style.background = 'none';
         container.style.width = '70px';
         container.style.height = 'auto';
-        if (mode === '1') {
-            container.style.display = 'none'
+        if (mode === '1' && !option) {
+            container.style.display = 'none';
         }
 
         if (!script) {
             // Copy to clipboard control
             this._createControl('clipboard-copy-control', '<i class="fa fa-copy"></i>', container, function (e) {
                 this._copyCodeToClipboard();
-            });
+            }, mode === '1');
         }
 
         if (!script) {
@@ -134,7 +134,7 @@ export var CollectionControl = L.Control.extend({
                         .hide()
                         .show("slide", {direction: "right"}, 300);
                 }
-            });
+            }, mode === '1');
         }
 
         const hidden = script || mode;
@@ -142,22 +142,22 @@ export var CollectionControl = L.Control.extend({
         // Area control
         this._createControl('area-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function (e) {
             this._toggleCollectionMode(this._areas, "areas_converter", e.target, hidden);
-        });
+        }, hidden);
 
         // Poly Area control
         this._createControl('polyarea-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function (e) {
             this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target, hidden);
-        });
+        }, hidden);
 
         // Path control
         this._createControl('path-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function (e) {
             this._toggleCollectionMode(this._path, "path_converter", e.target, hidden);
-        });
+        }, hidden);
 
         // Positions control
         this._createControl('position-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/positions-icon.png" alt="Positions" title="Positions" height="30" width="30">', container, function (e) {
             this._toggleCollectionMode(this._positions, "position_converter", e.target, hidden);
-        });
+        }, hidden);
 
         // Undo control
         this._createControl('undo-control', '<i class="fa fa-undo" aria-hidden="true"></i>', container, function (e) {
@@ -165,7 +165,7 @@ export var CollectionControl = L.Control.extend({
                 this._currentDrawable.removeLast();
                 this._outputCode();
             }
-        });
+        }, mode === '1' && !option);
 
         // Clear control
         this._createControl('clear-control', '<i class="fa fa-trash" aria-hidden="true"></i>', container, function (e) {
@@ -173,7 +173,7 @@ export var CollectionControl = L.Control.extend({
                 this._currentDrawable.removeAll();
                 this._outputCode();
             }
-        });
+        }, mode === '1' && !option);
 
         if (script) {
             $('.slide-panel').css('height', '182').css('max-height', '182');
@@ -211,10 +211,13 @@ export var CollectionControl = L.Control.extend({
         return container;
     },
 
-    _createControl: function (id, html, container, onClick) {
+    _createControl: function (id, html, container, onClick, hidden) {
         const control = L.DomUtil.create('a', `leaflet-bar leaflet-control leaflet-control-custom`, container);
         control.id = id;
         control.innerHTML = html;
+        if (hidden) {
+            control.style.display = 'none'
+        }
         L.DomEvent.on(control, 'click', onClick, this);
     },
 
