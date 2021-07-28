@@ -108,7 +108,7 @@ export var CollectionControl = L.Control.extend({
         container.style.background = 'none';
         container.style.width = '70px';
         container.style.height = 'auto';
-        if (script || (mode === '1' && !option)) {
+        if ((script || mode === '1') && !option) {
             container.style.display = 'none';
         }
 

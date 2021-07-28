@@ -56,26 +56,24 @@ $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
     const mode = urlParams.get('mode');
     const script = urlParams.get('script');
+    const option = urlParams.get('option');
 
     if (mode !== '2') {
         map.addControl(new TitleLabel());
         map.addControl(new CoordinatesControl());
         map.addControl(new RegionBaseCoordinatesControl());
         map.addControl(new LocalCoordinatesControl());
-        
         map.addControl(L.control.zoom());
         map.addControl(new PlaneControl());
-
         map.addControl(new LocationLookupControl());
         map.addControl(new MapLabelControl());
         map.addControl(new CollectionControl({position: 'topright'}));
         map.addControl(new RegionLookupControl());
         map.addControl(new GridControl());
         map.addControl(new RegionLabelsControl());
-
     }
 
-    if (!mode) {
+    if (!mode && (!script || option)) {
         let prevMouseRect, prevMousePos;
         map.on('mousemove', function (e) {
             const mousePos = Position.fromLatLng(map, e.latlng, map.plane);
@@ -132,8 +130,7 @@ $(document).ready(function () {
     }
 
     map.setView(centreLatLng, zoom)
-
-    const option = urlParams.get('option');
+    
     if (option) {
         $(`#${option}-control`).addClass("active");
     }
