@@ -137,24 +137,26 @@ export var CollectionControl = L.Control.extend({
             });
         }
 
+        const hidden = script || mode;
+
         // Area control
         this._createControl('area-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function (e) {
-            this._toggleCollectionMode(this._areas, "areas_converter", e.target, script);
+            this._toggleCollectionMode(this._areas, "areas_converter", e.target, hidden);
         });
 
         // Poly Area control
         this._createControl('polyarea-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function (e) {
-            this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target, script);
+            this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target, hidden);
         });
 
         // Path control
         this._createControl('path-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function (e) {
-            this._toggleCollectionMode(this._path, "path_converter", e.target, script);
+            this._toggleCollectionMode(this._path, "path_converter", e.target, hidden);
         });
 
         // Positions control
         this._createControl('position-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/positions-icon.png" alt="Positions" title="Positions" height="30" width="30">', container, function (e) {
-            this._toggleCollectionMode(this._positions, "position_converter", e.target, script);
+            this._toggleCollectionMode(this._positions, "position_converter", e.target, hidden);
         });
 
         // Undo control
@@ -181,16 +183,16 @@ export var CollectionControl = L.Control.extend({
         if (option) {
             switch (option) {
                 case 'area':
-                    this._toggleCollectionMode(this._areas, "position_converter", undefined, script);
+                    this._toggleCollectionMode(this._areas, "position_converter", undefined, hidden);
                     break;
                 case 'polyarea':
-                    this._toggleCollectionMode(this._polyArea, "polyarea_converter", undefined, script);
+                    this._toggleCollectionMode(this._polyArea, "polyarea_converter", undefined, hidden);
                     break;
                 case 'path':
-                    this._toggleCollectionMode(this._path, "path_converter", undefined, script);
+                    this._toggleCollectionMode(this._path, "path_converter", undefined, hidden);
                     break;
                 case 'position':
-                    this._toggleCollectionMode(this._positions, "position_converter", undefined, script);
+                    this._toggleCollectionMode(this._positions, "position_converter", undefined, hidden);
                     break;
             }
         }
@@ -268,13 +270,13 @@ export var CollectionControl = L.Control.extend({
         }
     },
 
-    _toggleCollectionMode: function (drawable, converter, element, script) {
+    _toggleCollectionMode: function (drawable, converter, element, hidden) {
         $("a.leaflet-control-custom.active").removeClass("active");
 
         if (this._currentDrawable === drawable || drawable === undefined) {
             this._editing = false;
 
-            if (!script) {
+            if (!hidden) {
                 $("#code-output-panel").hide("slide", {direction: "right"}, 300);
             }
 
@@ -304,7 +306,7 @@ export var CollectionControl = L.Control.extend({
 
         this._currentConverter = converter;
 
-        if (!script) {
+        if (!hidden) {
             $("#code-output-panel").show("slide", {direction: "right"}, 300);
         }
 
