@@ -102,51 +102,61 @@ export var CollectionControl = L.Control.extend({
 
         const urlParams = new URLSearchParams(window.location.search);
         const mode = urlParams.get('mode');
+        const script = urlParams.get('script');
+        const option = urlParams.get('option');
+
         if (mode !== '1') {
             container.style.background = 'none';
             container.style.width = '70px';
             container.style.height = 'auto';
-            // Copy to clipboard control
-            this._createControl('<i class="fa fa-copy"></i>', container, function (e) {
-                this._copyCodeToClipboard();
-            });
 
-            // Settings control
-            this._createControl('<i class="fa fa-cog"></i>', container, function (e) {
-                if ($("#settings-panel").is(":visible")) {
-                    $("#settings-panel").hide("slide", {direction: "right"}, 300);
-                } else {
-                    if (this._currentDrawable !== undefined) {
-                        this._toggleCollectionMode();
+            if (!script) {
+                // Copy to clipboard control
+                this._createControl('<i class="fa fa-copy"></i>', container, function (e) {
+                    this._copyCodeToClipboard();
+                });
+            }
+
+            if (!script) {
+                // Settings control
+                this._createControl('<i class="fa fa-cog"></i>', container, function (e) {
+                    const settingsPanel = $("#settings-panel");
+                    if (settingsPanel.is(":visible")) {
+                        settingsPanel.hide("slide", {direction: "right"}, 300);
+                    } else {
+                        if (this._currentDrawable !== undefined) {
+                            this._toggleCollectionMode();
+                        }
+                        settingsPanel
+                            .css('display', 'flex')
+                            .hide()
+                            .show("slide", {direction: "right"}, 300);
                     }
-
-                    $("#settings-panel").css('display', 'flex').hide();
-                    $("#settings-panel").show("slide", {direction: "right"}, 300);
-                }
-            });
+                });
+            }
 
             // Area control
-            this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function (e) {
-                this._toggleCollectionMode(this._areas, "areas_converter", e.target);
+            this._createControl('area-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/area-icon.png" alt="Area" title="Area" height="30" width="30">', container, function (e) {
+                this._toggleCollectionMode(this._areas, "areas_converter", e.target, script);
             });
 
             // Poly Area control
-            this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function (e) {
-                this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target);
+            this._createControl('polyarea-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/polyarea-icon.png" alt="Poly Area" title="Poly Area" height="30" width="30">', container, function (e) {
+                this._toggleCollectionMode(this._polyArea, "polyarea_converter", e.target, script);
             });
 
             // Path control
-            this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function (e) {
-                this._toggleCollectionMode(this._path, "path_converter", e.target);
+            this._createControl('path-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/path-icon.png" alt="Path" title="Path" height="30" width="30">', container, function (e) {
+                this._toggleCollectionMode(this._path, "path_converter", e.target, script);
             });
 
             // Positions control
-            this._createControl('<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/positions-icon.png" alt="Positions" title="Positions" height="30" width="30">', container, function (e) {
-                this._toggleCollectionMode(this._positions, "position_converter", e.target);
+            this._createControl('position-control', '<img src="https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/positions-icon.png" alt="Positions" title="Positions" height="30" width="30">', container, function (e) {
+                this._toggleCollectionMode(this._positions, "position_converter", e.target, script);
             });
 
             // Undo control
-            this._createControl('<i class="fa fa-undo" aria-hidden="true"></i>', container, function (e) {
+            this._createControl('undo-control', '<i class="fa fa-undo" aria-hidden="true"></i>', container, function (e) {
                 if (this._currentDrawable !== undefined) {
                     this._currentDrawable.removeLast();
                     this._outputCode();
@@ -154,12 +164,34 @@ export var CollectionControl = L.Control.extend({
             });
 
             // Clear control
-            this._createControl('<i class="fa fa-trash" aria-hidden="true"></i>', container, function (e) {
+            this._createControl('clear-control', '<i class="fa fa-trash" aria-hidden="true"></i>', container, function (e) {
                 if (this._currentDrawable !== undefined) {
                     this._currentDrawable.removeAll();
                     this._outputCode();
                 }
             });
+
+            if (script) {
+                $('.slide-panel').css('height', '182').css('max-height', '182');
+                $('#code-output-pre').css('height', '180').css('max-height', '180');
+            }
+
+            if (option) {
+                switch (option) {
+                    case 'area':
+                        this._toggleCollectionMode(this._areas, "position_converter", undefined, script);
+                        break;
+                    case 'polyarea':
+                        this._toggleCollectionMode(this._polyArea, "polyarea_converter", undefined, script);
+                        break;
+                    case 'path':
+                        this._toggleCollectionMode(this._path, "path_converter", undefined, script);
+                        break;
+                    case 'position':
+                        this._toggleCollectionMode(this._positions, "position_converter", undefined, script);
+                        break;
+                }
+            }
         }
 
         L.DomEvent.disableClickPropagation(container);
@@ -176,8 +208,9 @@ export var CollectionControl = L.Control.extend({
         return container;
     },
 
-    _createControl: function (html, container, onClick) {
-        var control = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+    _createControl: function (id, html, container, onClick) {
+        const control = L.DomUtil.create('a', `leaflet-bar leaflet-control leaflet-control-custom`, container);
+        control.id = id;
         control.innerHTML = html;
         L.DomEvent.on(control, 'click', onClick, this);
     },
@@ -234,13 +267,15 @@ export var CollectionControl = L.Control.extend({
         }
     },
 
-    _toggleCollectionMode: function (drawable, converter, element) {
+    _toggleCollectionMode: function (drawable, converter, element, script) {
         $("a.leaflet-control-custom.active").removeClass("active");
 
         if (this._currentDrawable === drawable || drawable === undefined) {
             this._editing = false;
 
-            $("#code-output-panel").hide("slide", {direction: "right"}, 300);
+            if (!script) {
+                $("#code-output-panel").hide("slide", {direction: "right"}, 300);
+            }
 
             this._firstSelectedAreaPosition = undefined;
             this._map.removeLayer(this._currentDrawable.featureGroup);
@@ -261,11 +296,16 @@ export var CollectionControl = L.Control.extend({
         }
 
         this._editing = true;
-        $(element).closest("a.leaflet-control-custom").addClass("active");
+
+        if (element) {
+           $(element).closest("a.leaflet-control-custom").addClass("active");
+        }
 
         this._currentConverter = converter;
 
-        $("#code-output-panel").show("slide", {direction: "right"}, 300);
+        if (!script) {
+            $("#code-output-panel").show("slide", {direction: "right"}, 300);
+        }
 
         if (this._currentDrawable !== undefined) {
             this._map.removeLayer(this._currentDrawable.featureGroup);

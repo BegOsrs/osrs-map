@@ -12,6 +12,9 @@ import {RegionLabelsControl} from './controls/region_labels_control.js';
 import {RegionLookupControl} from './controls/region_lookup_control.js';
 import {Region} from './model/Region.js';
 import {PlaneControl} from "./controls/plane_control.js";
+import {TitleLabel} from "./controls/title_label.js";
+import {RegionBaseCoordinatesControl} from "./controls/region_base_coordinates_control.js";
+import {LocalCoordinatesControl} from "./controls/local_coordinates_control.js";
 
 $(document).ready(function () {
 
@@ -24,7 +27,7 @@ $(document).ready(function () {
 
     const urlRegionID = currentUrl.searchParams.get("regionID");
 
-    var map = L.map('map', {
+    const map = L.map('map', {
         //maxBounds: L.latLngBounds(L.latLng(-40, -180), L.latLng(85, 153))
         zoomControl: false,
         renderer: L.canvas()
@@ -52,11 +55,17 @@ $(document).ready(function () {
 
     const urlParams = new URLSearchParams(window.location.search);
     const mode = urlParams.get('mode');
+    const script = urlParams.get('script');
+
     if (mode !== '2') {
-        //map.addControl(new TitleLabel());
+        if (!script) {
+            map.addControl(new TitleLabel());
+        }
         map.addControl(new CoordinatesControl());
-        /*map.addControl(new RegionBaseCoordinatesControl());*/
-        /*map.addControl(new LocalCoordinatesControl());*/
+        if (!script) {
+            map.addControl(new RegionBaseCoordinatesControl());
+            map.addControl(new LocalCoordinatesControl());
+        }
         map.addControl(L.control.zoom());
         map.addControl(new PlaneControl());
         map.addControl(new LocationLookupControl());
@@ -67,26 +76,31 @@ $(document).ready(function () {
         map.addControl(new RegionLabelsControl());
     }
 
+    if (!mode) {
+        let prevMouseRect, prevMousePos;
+        map.on('mousemove', function (e) {
+            const mousePos = Position.fromLatLng(map, e.latlng, map.plane);
 
-    var prevMouseRect, prevMousePos;
-    map.on('mousemove', function (e) {
-        var mousePos = Position.fromLatLng(map, e.latlng, map.plane);
+            if (prevMousePos !== mousePos) {
 
-        if (prevMousePos !== mousePos) {
+                prevMousePos = mousePos;
 
-            prevMousePos = mousePos;
+                if (prevMouseRect !== undefined) {
+                    map.removeLayer(prevMouseRect);
+                }
 
-            if (prevMouseRect !== undefined) {
-                map.removeLayer(prevMouseRect);
+                prevMouseRect = mousePos.toLeaflet(map);
+                prevMouseRect.addTo(map);
             }
-
-            prevMouseRect = mousePos.toLeaflet(map);
-            prevMouseRect.addTo(map);
-        }
-    });
+        });
+    }
 
     const setUrlParams = () => {
         const urlParams = new URLSearchParams(window.location.search);
+        const script = urlParams.get('script');
+        let scriptUrl = script ? 'script=true&' : '';
+        const option = urlParams.get('option');
+        let optionUrl = option ? `option=${option}&` : '';
         const mode = urlParams.get('mode');
         let modeUrl = mode ? `mode=${mode}&` : '';
 
@@ -95,7 +109,7 @@ $(document).ready(function () {
 
         const zoom = map.getZoom();
 
-        window.history.replaceState(null, null, `?${modeUrl}centreX=${centrePos.x}&centreY=${centrePos.y}&centreZ=${centrePos.z}&zoom=${zoom}`);
+        window.history.replaceState(null, null, `?${scriptUrl}${optionUrl}${modeUrl}centreX=${centrePos.x}&centreY=${centrePos.y}&centreZ=${centrePos.z}&zoom=${zoom}`);
     };
 
     map.on('move', setUrlParams);
@@ -119,4 +133,9 @@ $(document).ready(function () {
     }
 
     map.setView(centreLatLng, zoom)
+
+    const option = urlParams.get('option');
+    if (option) {
+        $(`#${option}-control`).addClass("active");
+    }
 });

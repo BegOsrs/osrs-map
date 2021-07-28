@@ -38,6 +38,7 @@ html, body {
 .ui-autocomplete > li:nth-child(even) {
     background-color: rgb(71, 63, 54);
 }
+
 .ui-autocomplete > li:nth-child(odd) {
     background-color: rgb(64, 57, 49);
 }
@@ -205,7 +206,7 @@ input.leaflet-control-custom {
 #output-container .panel-default {
     background-color: #121212;
     border: none;
-    height:100%;
+    height: 100%;
 }
 
 #output-container .panel-body, #output-container .panel-body pre {
@@ -219,7 +220,7 @@ input.leaflet-control-custom {
 
 #code-output {
     color: #eee8d5;
-    outline:none!important;
+    outline: none !important;
 }
 
 #output-container .panel-heading {
@@ -230,13 +231,14 @@ input.leaflet-control-custom {
 }
 
 .slide-panel {
-    position:fixed;
-    display:none;
+    position: fixed;
+    display: none;
     top: 10px;
     right: 80px;
     z-index: 1000;
     height: 242px;
-    width: 310px;
+    width: 315px;
+    max-width: 315px;
     background-color: #3e3529;
     border-radius: 0 3px 3px 0;
     max-height: 242px;
@@ -258,8 +260,10 @@ input.leaflet-control-custom {
     border-radius: 0;
     margin: 0;
     overflow-y: auto;
-    max-height: 242px;
+    height: 240px;
+    max-height: 240px;
     color: #ff981f;
+    overflow-x: hidden;
 }
 
 #map-container {
@@ -318,29 +322,21 @@ input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-i
     -webkit-appearance: none;
     margin: 0;
 }
- 
+
 input[type="number"] {
     -moz-appearance: textfield;
 }
 
 .noselect {
     -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Firefox */
-          -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome and Opera */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                       supported by Chrome and Opera */
 }
-
-select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;       /* Remove default arrow */
-    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_down.png);   /* Add custom arrow */
-}
-
-
 
 /* width */
 ::-webkit-scrollbar {
@@ -395,8 +391,4 @@ select {
     background-size: cover;
     height: 16px;
     width: 16px;
-}
-
-.bot-api {
-    display: none;
 }
