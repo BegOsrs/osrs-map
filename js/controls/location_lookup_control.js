@@ -20,7 +20,7 @@ export var LocationLookupControl = L.Control.extend({
         locationInput.placeholder = "Go to location";
 
         const self = this;
-        Locations.getLocations(function(locations) {
+        Locations.getLocations(function (locations) {
             self.locations = $.map(locations, function (value, key) {
                 return {
                     label: value.name,
@@ -49,7 +49,7 @@ export var LocationLookupControl = L.Control.extend({
         return container;
     },
 
-    _goToCoordinates: function(x, y, z) {
+    _goToCoordinates: function (x, y, z) {
         if (this._searchMarker !== undefined) {
             this._map.removeLayer(this._searchMarker);
         }

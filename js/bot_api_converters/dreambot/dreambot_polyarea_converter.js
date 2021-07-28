@@ -1,6 +1,5 @@
 'use strict';
 
-import {PolyArea} from '../../model/PolyArea.js';
 import {Position} from '../../model/Position.js';
 import {OSBotPolyAreaConverter} from '../osbot/osbot_polyarea_converter.js';
 
@@ -11,7 +10,7 @@ export class DreamBotPolyAreaConverter extends OSBotPolyAreaConverter {
         this.javaArea = "Area";
         this.javaPosition = "Tile";
     }
-    
+
     /*
     API Doc:
         https://dreambot.org/javadocs/org/dreambot/api/methods/map/Area.html
@@ -35,7 +34,7 @@ export class DreamBotPolyAreaConverter extends OSBotPolyAreaConverter {
             polyarea.add(new Position(values[0], values[1], z));
         }
     }
-    
+
     toJava(polyarea) {
         if (polyarea.positions.length == 0) {
             return "";

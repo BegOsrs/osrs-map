@@ -1,18 +1,17 @@
 'use strict';
 
 import {Area} from '../../model/Area.js';
-import {Areas} from '../../model/Areas.js';
 import {Position} from '../../model/Position.js';
 import {OSBotAreasConverter} from '../osbot/osbot_areas_converter.js';
 
 export class DreamBotAreasConverter extends OSBotAreasConverter {
-    
+
     constructor() {
         super();
         this.javaArea = "Area";
         this.javaPosition = "Tile";
     }
-    
+
     /*
     API Doc:
         https://dreambot.org/javadocs/org/dreambot/api/methods/map/Area.html
@@ -25,14 +24,14 @@ export class DreamBotAreasConverter extends OSBotAreasConverter {
     Tile(int x, int y) 
     Tile(int x, int y, int z)
     */
-    fromJava(text, areas) {        
+    fromJava(text, areas) {
         areas.removeAll();
         text = text.replace(/\s/g, '');
-        
+
         var areasPattern = ``
-        
+
         var areasPattern = `(?:new${this.javaArea}\\((\\d+,\\d+,\\d+,\\d+(?:,\\d+)?)\\)|\\(new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\),new${this.javaPosition}\\((\\d+,\\d+(?:,\\d)?)\\)\\))`;
-        var re = new RegExp(areasPattern,"mg");
+        var re = new RegExp(areasPattern, "mg");
         var match;
         while ((match = re.exec(text))) {
             if (match[1] !== undefined) {
@@ -45,12 +44,12 @@ export class DreamBotAreasConverter extends OSBotAreasConverter {
 
                 var pos2Values = match[3].split(",");
                 var pos2Z = pos2Values.length == 2 ? 0 : pos2Values[2];
-                
+
                 areas.add(new Area(new Position(pos1Values[0], pos1Values[1], pos1Z), new Position(pos2Values[0], pos2Values[1], pos2Z)));
             }
         }
     }
-    
+
     toJavaSingle(area) {
         if (area.startPosition.z == 0) {
             return `new ${this.javaArea}(${area.startPosition.x}, ${area.startPosition.y}, ${area.endPosition.x}, ${area.endPosition.y})`;

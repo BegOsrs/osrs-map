@@ -1,6 +1,5 @@
 'use strict';
 
-import {PolyArea} from '../../model/PolyArea.js';
 import {Position} from '../../model/Position.js';
 import {OSBotPolyAreaConverter} from '../osbot/osbot_polyarea_converter.js';
 
@@ -11,7 +10,7 @@ export class TRiBotPolyAreaConverter extends OSBotPolyAreaConverter {
         this.javaArea = "RSArea";
         this.javaPosition = "RSTile";
     }
-    
+
     /*
     API Doc:
         https://tribot.org/doc/org/tribot/api2007/types/RSTile.html
@@ -30,7 +29,7 @@ export class TRiBotPolyAreaConverter extends OSBotPolyAreaConverter {
             polyarea.add(new Position(match[1], match[2], match[3]));
         }
     }
-    
+
     toJava(polyarea) {
         if (polyarea.positions.length == 0) {
             return "";

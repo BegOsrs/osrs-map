@@ -1,9 +1,10 @@
 'use strict';
 
 export class Converter {
-    
-    fromJava(text, drawable) {}
-    
+
+    fromJava(text, drawable) {
+    }
+
     toJava(drawable) {
         switch ($("#output-type").val()) {
             case "Array":
@@ -16,14 +17,19 @@ export class Converter {
                 return this.toRaw(drawable);
         }
     }
-    
-    toRaw(drawable) {}
-    
-    toJavaSingle(drawable) {}
-    
-    toJavaArray(drawable) {}
-    
-    toJavaList(drawable) {}
-    
-    toJavaArraysAsList(drawable) {}
+
+    toRaw(drawable) {
+    }
+
+    toJavaSingle(drawable) {
+    }
+
+    toJavaArray(drawable) {
+    }
+
+    toJavaList(drawable) {
+    }
+
+    toJavaArraysAsList(drawable) {
+    }
 }

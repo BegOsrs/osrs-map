@@ -1,18 +1,17 @@
 'use strict';
 
 import {Area} from '../../model/Area.js';
-import {Areas} from '../../model/Areas.js';
 import {Position} from '../../model/Position.js';
 import {OSBotAreasConverter} from '../osbot/osbot_areas_converter.js';
 
 export class QuantumBotAreasConverter extends OSBotAreasConverter {
-    
+
     constructor() {
         super();
         this.javaArea = "Area";
         this.javaPosition = "Tile";
     }
-    
+
     /*
     API Doc:
         https://quantumbot.org/javadocs/org/quantumbot/api/map/Area.html
@@ -25,14 +24,14 @@ export class QuantumBotAreasConverter extends OSBotAreasConverter {
     
     Tile(int x, int y, int z)
     */
-    fromJava(text, areas) {        
+    fromJava(text, areas) {
         areas.removeAll();
         text = text.replace(/\s/g, '');
-        
+
         var areasPattern = ``
-        
+
         var areasPattern = `(?:new${this.javaArea}\\((\\d+,\\d+,\\d+,\\d+(?:,\\d+)?)\\)|\\(new${this.javaPosition}\\((\\d+,\\d+,\\d)\\),new${this.javaPosition}\\((\\d+,\\d+,\\d)\\)(?:,(\\d))?\\))`;
-        var re = new RegExp(areasPattern,"mg");
+        var re = new RegExp(areasPattern, "mg");
         var match;
         while ((match = re.exec(text))) {
             if (match[1] !== undefined) {
@@ -42,17 +41,17 @@ export class QuantumBotAreasConverter extends OSBotAreasConverter {
             } else {
                 var pos1Values = match[2].split(",");
                 var pos2Values = match[3].split(",");
-                
+
                 if (match[4] !== undefined) {
                     pos1Values[2] = match[4];
                     pos2Values[2] = match[4];
                 }
-                
+
                 areas.add(new Area(new Position(pos1Values[0], pos1Values[1], pos1Values[2]), new Position(pos2Values[0], pos2Values[1], pos2Values[2])));
             }
         }
     }
-    
+
     toJavaSingle(area) {
         if (area.startPosition.z == 0) {
             return `new ${this.javaArea}(${area.startPosition.x}, ${area.startPosition.y}, ${area.endPosition.x}, ${area.endPosition.y})`;

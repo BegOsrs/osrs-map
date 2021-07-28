@@ -6,7 +6,7 @@ export var PlaneControl = L.Control.extend({
     },
 
     onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
         container.style.background = 'none';
         container.style.width = '32px';
         container.style.height = 'auto';
@@ -14,13 +14,13 @@ export var PlaneControl = L.Control.extend({
         /*container.style.display = 'inline-block';
         container.style.float = 'none';*/
 
-        var incrementPlaneButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+        const incrementPlaneButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         incrementPlaneButton.id = 'increase-level';
         incrementPlaneButton.innerHTML = 'Z +';
 
         L.DomEvent.on(incrementPlaneButton, 'click', this._increasePlane, this);
 
-        var decrementPlaneButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+        const decrementPlaneButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         decrementPlaneButton.id = 'decrease-level';
         decrementPlaneButton.innerHTML = 'Z -';
 
@@ -30,8 +30,8 @@ export var PlaneControl = L.Control.extend({
         return container;
     },
 
-    _increasePlane: function() {
-        if (this._map.plane == 3) {
+    _increasePlane: function () {
+        if (this._map.plane === 3) {
             return;
         }
         this._map.plane++;
@@ -39,8 +39,8 @@ export var PlaneControl = L.Control.extend({
         this._dispatchPlaneChangedEvent();
     },
 
-    _decreasePlane: function() {
-        if (this._map.plane == 0) {
+    _decreasePlane: function () {
+        if (this._map.plane === 0) {
             return;
         }
         this._map.plane--;
@@ -48,7 +48,7 @@ export var PlaneControl = L.Control.extend({
         this._dispatchPlaneChangedEvent();
     },
 
-    _dispatchPlaneChangedEvent: function() {
+    _dispatchPlaneChangedEvent: function () {
         this._map.fire('planeChanged', {
             plane: this._map.plane
         });

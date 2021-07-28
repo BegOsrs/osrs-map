@@ -235,11 +235,14 @@ input.leaflet-control-custom {
     top: 10px;
     right: 80px;
     z-index: 1000;
-    height: 210px;
+    height: 242px;
     width: 310px;
     background-color: #3e3529;
-    border-radius: 3px;
-    max-height: 210px;
+    border-radius: 0 3px 3px 0;
+    max-height: 242px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
 }
 
 #settings-panel {
@@ -255,7 +258,7 @@ input.leaflet-control-custom {
     border-radius: 0;
     margin: 0;
     overflow-y: auto;
-    max-height: 210px;
+    max-height: 242px;
     color: #ff981f;
 }
 
@@ -330,60 +333,38 @@ input[type="number"] {
                                     supported by Chrome and Opera */
 }
 
-.leaflet-bar .leaflet-control .noselect {
-    display: inline-block !important;
-    float: none !important;
-}
-
 select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;       /* Remove default arrow */
-    background-image: url(images/arrow_down.png);   /* Add custom arrow */
+    background-image: url(https://raw.githubusercontent.com/begosrs/osrs-map/master/css/images/arrow_down.png);   /* Add custom arrow */
 }
-
 
 
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 16px;
 }
 
 /* Track */
-::-webkit-scrollbar-track {
-    background-color: linear-gradient(to right, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
-    background-insets: 0;
-    background-radius: 0;
-    border-radius: 5px;
-}
-
 ::-webkit-scrollbar-track:vertical {
-    background-color: linear-gradient(to right, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
+    background: linear-gradient(to right, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
 }
 
 ::-webkit-scrollbar-track:horizontal {
-    background-color: linear-gradient(to bottom, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
+    background: linear-gradient(to bottom, rgb(37, 32, 25) 70%, rgb(61, 52, 38) 90%);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    /*background-image: url(../../gui/images/thumb.png);*/
     background-color: rgb(101, 88, 65);
     inset: 0;
     border-radius: 3px;
     border-color: #1e1e1c;
-    /*border-color: black;*/
     border-width: 2px;
-    //box-shadow: inset 9 0.3 -1 -1 rgba(0, 0, 0, 0.5);
-    //effect: innershadow(gaussian, rgba(0, 0, 0, 0.5), 9, 0.3, -1, -1);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5) inset;
 }
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-    background: #555;
-}
-
 
 /* Buttons */
 
@@ -409,10 +390,13 @@ select {
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement,
 ::-webkit-scrollbar-button:single-button:vertical:increment,
-::-webkit-scrollbar-button:single-button:horizontal:decrement
+::-webkit-scrollbar-button:single-button:horizontal:decrement,
 ::-webkit-scrollbar-button:single-button:horizontal:increment {
     background-size: cover;
-    height: 24px;
-    width: 24px;
+    height: 16px;
+    width: 16px;
 }
 
+.bot-api {
+    display: none;
+}

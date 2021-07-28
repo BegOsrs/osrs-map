@@ -1,8 +1,5 @@
 'use strict';
 
-import {Area} from './Area.js';
-import {Position} from './Position.js';
-
 export class Areas {
 
     constructor(map) {
@@ -14,7 +11,7 @@ export class Areas {
 
     add(area) {
         this.areas.push(area);
-        var rectangle = area.toLeaflet(this.map);
+        const rectangle = area.toLeaflet(this.map);
         this.rectangles.push(rectangle);
         this.featureGroup.addLayer(rectangle);
     }
@@ -31,5 +28,9 @@ export class Areas {
             this.areas.pop();
             this.featureGroup.removeLayer(this.rectangles.pop());
         }
+    }
+
+    getName() {
+        return "Areas";
     }
 }

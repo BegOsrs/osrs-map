@@ -1,6 +1,5 @@
 'use strict';
 
-import {PolyArea} from '../../model/PolyArea.js';
 import {Position} from '../../model/Position.js';
 import {OSBotPolyAreaConverter} from '../osbot/osbot_polyarea_converter.js';
 
@@ -11,7 +10,7 @@ export class RuneMatePolyAreaConverter extends OSBotPolyAreaConverter {
         this.javaArea = "Area";
         this.javaPosition = "Coordinate";
     }
-    
+
     fromJava(text, polyarea) {
         polyarea.removeAll();
         text = text.replace(/\s/g, '');
@@ -21,13 +20,13 @@ export class RuneMatePolyAreaConverter extends OSBotPolyAreaConverter {
         var match;
         while ((match = re.exec(text))) {
             var values = match[1].split(",");
-            
+
             var z = values.length == 2 ? 0 : values[2];
-            
+
             polyarea.add(new Position(values[0], values[1], z));
         }
     }
-    
+
     toJava(polyarea) {
         if (polyarea.positions.length == 0) {
             return "";

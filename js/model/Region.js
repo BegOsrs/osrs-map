@@ -13,25 +13,29 @@ export class Region {
         this.id = id;
     }
 
-	static fromPosition(position) {
-	    return Region.fromCoordinates(position.x, position.y);
-	}
-	
+    static fromPosition(position) {
+        return Region.fromCoordinates(position.x, position.y);
+    }
+
     static fromCoordinates(x, y) {
-	    var regionID = (x >> 6) * 256 + (y >> 6);
-	    return new Region(regionID);
-	}
-	
+        const regionID = (x >> 6) * 256 + (y >> 6);
+        return new Region(regionID);
+    }
+
     toCentrePosition() {
-        var position = this.toPosition();
+        const position = this.toPosition();
         position.x += REGION_WIDTH / 2;
         position.y += REGION_HEIGHT / 2;
         return position;
     }
-    
-	toPosition() {
-	    var x = (this.id >> 8) << 6;
-		var y = (this.id & 0xFF) << 6;
-		return new Position(x, y, 0);
-	}
-};
+
+    toPosition() {
+        const x = (this.id >> 8) << 6;
+        const y = (this.id & 0xFF) << 6;
+        return new Position(x, y, 0);
+    }
+
+    getName() {
+        return "Region";
+    }
+}

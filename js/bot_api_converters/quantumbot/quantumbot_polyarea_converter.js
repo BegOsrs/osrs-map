@@ -1,6 +1,5 @@
 'use strict';
 
-import {PolyArea} from '../../model/PolyArea.js';
 import {Position} from '../../model/Position.js';
 import {OSBotPolyAreaConverter} from '../osbot/osbot_polyarea_converter.js';
 
@@ -11,7 +10,7 @@ export class QuantumBotPolyAreaConverter extends OSBotPolyAreaConverter {
         this.javaArea = "Area";
         this.javaPosition = "Tile";
     }
-    
+
     /*
     API Doc:
         https://quantumbot.org/javadocs/org/quantumbot/api/map/Area.html
@@ -23,7 +22,7 @@ export class QuantumBotPolyAreaConverter extends OSBotPolyAreaConverter {
     fromJava(text, polyarea) {
         polyarea.removeAll();
         text = text.replace(/\s/g, '');
-        
+
         var zPattern = /\},(\d)\)/mg;
         var zMatch = zPattern.exec(text);
         var z = zMatch ? zMatch[1] : 0;
@@ -34,7 +33,7 @@ export class QuantumBotPolyAreaConverter extends OSBotPolyAreaConverter {
             polyarea.add(new Position(match[1], match[2], z));
         }
     }
-    
+
     toJava(polyarea) {
         if (polyarea.positions.length == 0) {
             return "";

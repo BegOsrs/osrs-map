@@ -18,8 +18,8 @@ export class Area {
     }
 
     toLeaflet(map) {
-        var newStartPosition = new Position(this.startPosition.x, this.startPosition.y, this.startPosition.z);
-        var newEndPosition = new Position(this.endPosition.x, this.endPosition.y, this.startPosition.z);
+        const newStartPosition = new Position(this.startPosition.x, this.startPosition.y, this.startPosition.z);
+        const newEndPosition = new Position(this.endPosition.x, this.endPosition.y, this.startPosition.z);
 
         if (this.endPosition.x >= this.startPosition.x) {
             newEndPosition.x += 1;

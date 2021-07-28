@@ -1,7 +1,6 @@
 'use strict';
 
-import {Position} from '../model/Position.js';
-import {Region, MIN_X, MAX_X, MIN_Y, MAX_Y} from '../model/Region.js';
+import {MAX_X, MAX_Y, MIN_X, MIN_Y, Region} from '../model/Region.js';
 
 export var RegionLookupControl = L.Control.extend({
     options: {
@@ -9,38 +8,38 @@ export var RegionLookupControl = L.Control.extend({
     },
 
     onAdd: function (map) {
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
 
-        var regionIDInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom region-input', container);
+        const regionIDInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom region-input', container);
         regionIDInput.id = 'region-lookup';
         regionIDInput.type = 'number';
         regionIDInput.placeholder = "Go to region";
-       
-        L.DomEvent.on(regionIDInput, 'change keyup', function() {
-            var regionIDText = regionIDInput.value;
-            
-            if (regionIDText.length == 0) {
+
+        L.DomEvent.on(regionIDInput, 'change keyup', function () {
+            const regionIDText = regionIDInput.value;
+
+            if (regionIDText.length === 0) {
                 return;
             }
-            
-            var regionID = parseInt(regionIDText);
-            
-            var position = new Region(regionID).toCentrePosition();
-            
+
+            const regionID = parseInt(regionIDText);
+
+            const position = new Region(regionID).toCentrePosition();
+
             if (position.x >= MIN_X && position.x <= MAX_X && position.y >= MIN_Y && position.y <= MAX_Y) {
                 this._goToCoordinates(position);
             }
         }, this);
-        
+
 
         L.DomEvent.disableClickPropagation(container);
         return container;
     },
-    
-    _goToCoordinates: function(position) {
+
+    _goToCoordinates: function (position) {
         if (this._searchMarker !== undefined) {
             this._map.removeLayer(this._searchMarker);
         }
@@ -53,7 +52,7 @@ export var RegionLookupControl = L.Control.extend({
 
         this._map.panTo(this._searchMarker.getLatLng());
 
-        if (this._map.plane != position.z) {
+        if (this._map.plane !== position.z) {
             this._map.plane = position.z;
             this._map.updateMapPath();
         }

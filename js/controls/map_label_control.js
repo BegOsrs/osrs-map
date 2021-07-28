@@ -1,24 +1,23 @@
 'use strict';
 
-import { CanvasLayer } from '../external/L.CanvasLayer.js';
+import {CanvasLayer} from '../external/L.CanvasLayer.js';
 import Locations from "../model/Locations.js";
-import { Position } from "../model/Position.js";
 
-var MapLabelsCanvas = CanvasLayer.extend({
+const MapLabelsCanvas = CanvasLayer.extend({
     setData: function (data) {
         this.needRedraw();
     },
 
     onDrawLayer: function (info) {
-        var zoom = this._map.getZoom();
+        const zoom = this._map.getZoom();
 
-        var ctx = info.canvas.getContext('2d');
+        const ctx = info.canvas.getContext('2d');
         ctx.clearRect(0, 0, info.canvas.width, info.canvas.height);
 
         ctx.textAlign = "center";
-        var self = this;
+        const self = this;
         Locations.getLocations(function (locations) {
-            for (var i in locations) {
+            for (const i in locations) {
                 if (locations[i].position.z !== info.layer._map.plane) {
                     continue;
                 }
@@ -47,9 +46,9 @@ var MapLabelsCanvas = CanvasLayer.extend({
                 ctx.font = `bold ${fontSizeScaled}px Verdana`
                 ctx.fillStyle = fontColour
 
-                var position = locations[i].position;
-                var latLng = position.toCentreLatLng(self._map);
-                var canvasPoint = info.layer._map.latLngToContainerPoint(latLng);
+                const position = locations[i].position;
+                const latLng = position.toCentreLatLng(self._map);
+                const canvasPoint = info.layer._map.latLngToContainerPoint(latLng);
 
                 const name = locations[i].name
 
@@ -93,12 +92,12 @@ export var MapLabelControl = L.Control.extend({
     onAdd: function (map) {
         map.createPane("map-labels");
 
-        var container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
+        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
 
-        var labelsButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
+        const labelsButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         labelsButton.id = 'toggle-map-labels';
         labelsButton.innerHTML = 'Toggle Labels';
 
@@ -108,7 +107,7 @@ export var MapLabelControl = L.Control.extend({
 
         L.DomEvent.disableClickPropagation(container);
 
-        this._mapLabelsCanvas = new MapLabelsCanvas({ pane: "map-labels" });
+        this._mapLabelsCanvas = new MapLabelsCanvas({pane: "map-labels"});
         this._map.addLayer(this._mapLabelsCanvas);
 
         map.on('planeChanged', function () {

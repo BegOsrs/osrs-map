@@ -1,6 +1,5 @@
 'use strict';
 
-import {PolyArea} from '../../model/PolyArea.js';
 import {Position} from '../../model/Position.js';
 import {OSBotConverter} from './osbot_converter.js';
 
@@ -16,7 +15,7 @@ export class OSBotPolyAreaConverter extends OSBotConverter {
     fromJava(text, polyarea) {
         polyarea.removeAll();
         text = text.replace(/\s/g, '');
-        
+
         var zPattern = /.setPlane\(\d\)/mg;
         var zMatch = zPattern.exec(text);
         var z = zMatch ? zMatch[1] : 0;
@@ -27,7 +26,7 @@ export class OSBotPolyAreaConverter extends OSBotConverter {
             polyarea.add(new Position(match[1], match[2], z));
         }
     }
-    
+
     toRaw(polyarea) {
         var output = "";
         for (var i = 0; i < polyarea.positions.length; i++) {
@@ -35,7 +34,7 @@ export class OSBotPolyAreaConverter extends OSBotConverter {
         }
         return output;
     }
-    
+
     toJava(polyarea) {
         if (polyarea.positions.length == 0) {
             return "";

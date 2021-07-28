@@ -1,6 +1,6 @@
 'use strict';
 
-import {Position, RS_TILE_WIDTH_PX, RS_TILE_HEIGHT_PX} from './Position.js';
+import {RS_TILE_HEIGHT_PX, RS_TILE_WIDTH_PX} from './Position.js';
 
 export class PolyArea {
 
@@ -17,9 +17,9 @@ export class PolyArea {
         this.polygon = this.toLeaflet();
         this.featureGroup.addLayer(this.polygon);
     }
-    
+
     addAll(positions) {
-        for (var i = 0; i < positions.length; i ++) {
+        for (let i = 0; i < positions.length; i++) {
             this.positions.push(positions[i]);
         }
         this.featureGroup.removeLayer(this.polygon);
@@ -33,7 +33,7 @@ export class PolyArea {
             this.featureGroup.removeLayer(this.polygon);
         }
 
-        if (this.positions.length == 0) {
+        if (this.positions.length === 0) {
             this.polygon = undefined;
         } else {
             this.polygon = this.toLeaflet();
@@ -46,20 +46,20 @@ export class PolyArea {
         this.featureGroup.removeLayer(this.polygon);
         this.polygon = undefined;
     }
-    
+
     isEmpty() {
         return this.positions.length === 0;
     }
 
     toLeaflet() {
-        var latLngs = [];
+        const latLngs = [];
 
-        for (var i = 0; i < this.positions.length; i++) {
+        for (let i = 0; i < this.positions.length; i++) {
             latLngs.push(this.positions[i].toCentreLatLng(this.map));
         }
 
-        for (var i = 0; i < latLngs.length; i++) {
-            var point = this.map.project(latLngs[i], this.map.getMaxZoom());
+        for (let i = 0; i < latLngs.length; i++) {
+            const point = this.map.project(latLngs[i], this.map.getMaxZoom());
             point.x -= RS_TILE_WIDTH_PX / 2;
             point.y += RS_TILE_HEIGHT_PX / 2;
             latLngs[i] = this.map.unproject(point, this.map.getMaxZoom());
@@ -73,8 +73,8 @@ export class PolyArea {
             }
         );
     }
-    
+
     getName() {
         return "Area";
     }
-};
+}

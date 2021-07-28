@@ -1,19 +1,16 @@
 'use strict';
 
-import { Position } from './model/Position.js';
+import {Position} from './model/Position.js';
 
 // Import controls
-import { CollectionControl } from './controls/collection_control.js';
-import { CoordinatesControl } from './controls/coordinates_control.js';
-import { LocalCoordinatesControl } from './controls/local_coordinates_control.js';
-import { RegionBaseCoordinatesControl } from './controls/region_base_coordinates_control.js';
-import { GridControl } from './controls/grid_control.js';
-import { LocationLookupControl } from './controls/location_lookup_control.js';
-import { MapLabelControl } from './controls/map_label_control.js';
-import { RegionLabelsControl } from './controls/region_labels_control.js';
-import { RegionLookupControl } from './controls/region_lookup_control.js';
-import { TitleLabel } from './controls/title_label.js';
-import { Region } from './model/Region.js';
+import {CollectionControl} from './controls/collection_control.js';
+import {CoordinatesControl} from './controls/coordinates_control.js';
+import {GridControl} from './controls/grid_control.js';
+import {LocationLookupControl} from './controls/location_lookup_control.js';
+import {MapLabelControl} from './controls/map_label_control.js';
+import {RegionLabelsControl} from './controls/region_labels_control.js';
+import {RegionLookupControl} from './controls/region_lookup_control.js';
+import {Region} from './model/Region.js';
 import {PlaneControl} from "./controls/plane_control.js";
 
 $(document).ready(function () {
@@ -64,7 +61,7 @@ $(document).ready(function () {
         map.addControl(new PlaneControl());
         map.addControl(new LocationLookupControl());
         map.addControl(new MapLabelControl());
-        map.addControl(new CollectionControl({ position: 'topright' }));
+        map.addControl(new CollectionControl({position: 'topright'}));
         map.addControl(new RegionLookupControl());
         map.addControl(new GridControl());
         map.addControl(new RegionLabelsControl());

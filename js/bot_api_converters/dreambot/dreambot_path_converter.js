@@ -1,7 +1,6 @@
 'use strict';
 
 import {Position} from '../../model/Position.js';
-import {Path} from '../../model/Path.js';
 import {OSBotPathConverter} from '../osbot/osbot_path_converter.js';
 
 export class DreamBotPathConverter extends OSBotPathConverter {
@@ -11,7 +10,7 @@ export class DreamBotPathConverter extends OSBotPathConverter {
         this.javaArea = "Area";
         this.javaPosition = "Tile";
     }
-    
+
     /*
     API Doc:
         https://dreambot.org/javadocs/org/dreambot/api/methods/map/Tile.html
