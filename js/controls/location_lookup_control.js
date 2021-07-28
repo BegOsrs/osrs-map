@@ -13,6 +13,9 @@ export var LocationLookupControl = L.Control.extend({
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
+        if (new URLSearchParams(window.location.search).get('script')) {
+            container.style.display = 'none';
+        }
 
         const locationInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         locationInput.id = 'location-lookup';

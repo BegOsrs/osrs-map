@@ -48,7 +48,10 @@ export var RegionLabelsControl = L.Control.extend({
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
-
+        if (new URLSearchParams(window.location.search).get('script')) {
+            container.style.display = 'none';
+        }
+        
         const labelsButton = L.DomUtil.create('a', 'leaflet-bar leaflet-control leaflet-control-custom', container);
         labelsButton.id = 'toggle-region-labels';
         labelsButton.innerHTML = 'Toggle Region Labels';

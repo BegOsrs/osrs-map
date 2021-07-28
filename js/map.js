@@ -58,24 +58,21 @@ $(document).ready(function () {
     const script = urlParams.get('script');
 
     if (mode !== '2') {
-        if (!script) {
-            map.addControl(new TitleLabel());
-        }
+        map.addControl(new TitleLabel());
         map.addControl(new CoordinatesControl());
-        if (!script) {
-            map.addControl(new RegionBaseCoordinatesControl());
-            map.addControl(new LocalCoordinatesControl());
-        }
+        map.addControl(new RegionBaseCoordinatesControl());
+        map.addControl(new LocalCoordinatesControl());
+        
         map.addControl(L.control.zoom());
         map.addControl(new PlaneControl());
-        if (!script) {
-            map.addControl(new LocationLookupControl());
-            map.addControl(new MapLabelControl());
-            map.addControl(new CollectionControl({position: 'topright'}));
-            map.addControl(new RegionLookupControl());
-            map.addControl(new GridControl());
-            map.addControl(new RegionLabelsControl());
-        }
+
+        map.addControl(new LocationLookupControl());
+        map.addControl(new MapLabelControl());
+        map.addControl(new CollectionControl({position: 'topright'}));
+        map.addControl(new RegionLookupControl());
+        map.addControl(new GridControl());
+        map.addControl(new RegionLabelsControl());
+
     }
 
     if (!mode) {

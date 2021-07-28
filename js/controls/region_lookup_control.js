@@ -12,6 +12,9 @@ export var RegionLookupControl = L.Control.extend({
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
+        if (new URLSearchParams(window.location.search).get('script')) {
+            container.style.display = 'none';
+        }
 
         const regionIDInput = L.DomUtil.create('input', 'leaflet-bar leaflet-control leaflet-control-custom region-input', container);
         regionIDInput.id = 'region-lookup';

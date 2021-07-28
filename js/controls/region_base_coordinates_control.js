@@ -13,6 +13,9 @@ export var RegionBaseCoordinatesControl = L.Control.extend({
         const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
         container.id = 'coordinates-container';
         container.style.height = 'auto';
+        if (new URLSearchParams(window.location.search).get('script')) {
+            container.style.display = 'none';
+        }
         L.DomEvent.disableClickPropagation(container);
 
         const regionCoordinatesForm = L.DomUtil.create('form', 'leaflet-bar leaflet-control leaflet-control-custom form-inline', container);
