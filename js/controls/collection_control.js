@@ -112,14 +112,14 @@ export var CollectionControl = L.Control.extend({
 
             if (!script) {
                 // Copy to clipboard control
-                this._createControl('<i class="fa fa-copy"></i>', container, function (e) {
+                this._createControl('clipboard-copy-control', '<i class="fa fa-copy"></i>', container, function (e) {
                     this._copyCodeToClipboard();
                 });
             }
 
             if (!script) {
                 // Settings control
-                this._createControl('<i class="fa fa-cog"></i>', container, function (e) {
+                this._createControl('settings-control', '<i class="fa fa-cog"></i>', container, function (e) {
                     const settingsPanel = $("#settings-panel");
                     if (settingsPanel.is(":visible")) {
                         settingsPanel.hide("slide", {direction: "right"}, 300);
