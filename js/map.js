@@ -68,12 +68,14 @@ $(document).ready(function () {
         }
         map.addControl(L.control.zoom());
         map.addControl(new PlaneControl());
-        map.addControl(new LocationLookupControl());
-        map.addControl(new MapLabelControl());
-        map.addControl(new CollectionControl({position: 'topright'}));
-        map.addControl(new RegionLookupControl());
-        map.addControl(new GridControl());
-        map.addControl(new RegionLabelsControl());
+        if (!script) {
+            map.addControl(new LocationLookupControl());
+            map.addControl(new MapLabelControl());
+            map.addControl(new CollectionControl({position: 'topright'}));
+            map.addControl(new RegionLookupControl());
+            map.addControl(new GridControl());
+            map.addControl(new RegionLabelsControl());
+        }
     }
 
     if (!mode) {
