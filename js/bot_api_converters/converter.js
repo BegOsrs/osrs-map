@@ -38,7 +38,7 @@ export class Converter {
             return "";
         }
         let output = "";
-        for (let i = drawable.positions.length; i >= 0; i--) {
+        for (let i = drawable.positions.length - 1; i >= 0; i--) {
             if (i !== 0) {
                 output += ", ";
             }
