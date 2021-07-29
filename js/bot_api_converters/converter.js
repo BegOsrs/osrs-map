@@ -39,11 +39,11 @@ export class Converter {
         }
         let output = "";
         for (let i = drawable.positions.length - 1; i >= 0; i--) {
-            if (i !== 0) {
-                output += ", ";
-            }
             const position = drawable.positions[i];
             output += `(${position.x}, ${position.y}, ${position.z})`;
+            if (i > 0) {
+                output += ", ";
+            }
         }
         return output;
     }
