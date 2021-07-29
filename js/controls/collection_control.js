@@ -336,8 +336,14 @@ export var CollectionControl = L.Control.extend({
         let output = "";
 
         if (this._currentDrawable !== undefined) {
+            const urlParams = new URLSearchParams(window.location.search);
+            const script = urlParams.get('script');
             const botAPI = $("#bot-api option:selected").text();
-            output = converters[botAPI][this._currentConverter].toJava(this._currentDrawable);
+            if (script) {
+                output = converters[botAPI][this._currentConverter].toScript(this._currentDrawable);
+            } else {
+                output = converters[botAPI][this._currentConverter].toJava(this._currentDrawable);
+            }
         }
 
         $("#code-output").html(output);
