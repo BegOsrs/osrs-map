@@ -38,12 +38,12 @@ export class Converter {
             return "";
         }
         let output = "";
-        for (let i = 0; i < drawable.positions.length; i++) {
-            const position = drawable.positions[i];
-            output += `(${position.x}, ${position.y}, ${position.z})`;
-            if (i !== drawable.positions.length - 1) {
+        for (let i = drawable.positions.length; i >= 0; i--) {
+            if (i !== 0) {
                 output += ", ";
             }
+            const position = drawable.positions[i];
+            output += `(${position.x}, ${position.y}, ${position.z})`;
         }
         return output;
     }
