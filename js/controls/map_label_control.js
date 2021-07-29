@@ -90,13 +90,17 @@ export var MapLabelControl = L.Control.extend({
     },
 
     onAdd: function (map) {
-        map.createPane("map-labels");
+        const isScript = new URLSearchParams(window.location.search).get('script');
+
+        if (!isScript) {
+            map.createPane("map-labels");
+        }
 
         const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control noselect');
         container.style.background = 'none';
         container.style.width = '130px';
         container.style.height = 'auto';
-        if (new URLSearchParams(window.location.search).get('script')) {
+        if (isScript) {
             container.style.display = 'none';
         }
 
