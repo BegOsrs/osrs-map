@@ -66,7 +66,9 @@ $(document).ready(function () {
         map.addControl(L.control.zoom());
         map.addControl(new PlaneControl());
         map.addControl(new LocationLookupControl());
-        map.addControl(new MapLabelControl());
+        if (!script) {
+            map.addControl(new MapLabelControl());
+        }
         map.addControl(new CollectionControl({position: 'topright'}));
         map.addControl(new RegionLookupControl());
         map.addControl(new GridControl());
@@ -130,7 +132,7 @@ $(document).ready(function () {
     }
 
     map.setView(centreLatLng, zoom)
-    
+
     if (option) {
         $(`#${option}-control`).addClass("active");
     }
