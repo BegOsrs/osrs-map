@@ -1,6 +1,6 @@
 # Osrs map
 
-Adapted from <a href="explv.github.io" title="explv.github.io">explv.github.io</a> map.
+Adapted from <a href="explv.github.io" title="https://explv.github.io">explv.github.io</a> map.
 
 ### Generating map tiles
 
@@ -32,7 +32,6 @@ map.tile_layer = L.tileLayer('https://raw.githubusercontent.com/Explv/osrs_map_f
 
 6. Test the map to ensure coordinates produced for a selection of OSRS tiles are correct, you can compare with the live
    version of https://explv.github.io/
-
 
 ### Options
 
