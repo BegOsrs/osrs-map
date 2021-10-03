@@ -8,37 +8,48 @@ import {PolyArea} from '../model/PolyArea.js';
 import {Positions} from "../model/Positions.js";
 
 // Import converters
-import {OSBotAreasConverter} from '../bot_api_converters/osbot/osbot_areas_converter.js';
-import {OSBotPathConverter} from '../bot_api_converters/osbot/osbot_path_converter.js';
-import {OSBotPolyAreaConverter} from '../bot_api_converters/osbot/osbot_polyarea_converter.js';
-import {OSBotPositionConverter} from "../bot_api_converters/osbot/osbot_position_converter.js";
+import {OSBotAreasConverter} from '../api_converters/osbot/osbot_areas_converter.js';
+import {OSBotPathConverter} from '../api_converters/osbot/osbot_path_converter.js';
+import {OSBotPolyAreaConverter} from '../api_converters/osbot/osbot_polyarea_converter.js';
+import {OSBotPositionConverter} from "../api_converters/osbot/osbot_position_converter.js";
 
-import {TRiBotAreasConverter} from '../bot_api_converters/tribot/tribot_areas_converter.js';
-import {TRiBotPathConverter} from '../bot_api_converters/tribot/tribot_path_converter.js';
-import {TRiBotPolyAreaConverter} from '../bot_api_converters/tribot/tribot_polyarea_converter.js';
-import {TRiBotPositionConverter} from "../bot_api_converters/tribot/tribot_position_converter.js";
+import {TRiBotAreasConverter} from '../api_converters/tribot/tribot_areas_converter.js';
+import {TRiBotPathConverter} from '../api_converters/tribot/tribot_path_converter.js';
+import {TRiBotPolyAreaConverter} from '../api_converters/tribot/tribot_polyarea_converter.js';
+import {TRiBotPositionConverter} from "../api_converters/tribot/tribot_position_converter.js";
 
-import {DreamBotAreasConverter} from '../bot_api_converters/dreambot/dreambot_areas_converter.js';
-import {DreamBotPathConverter} from '../bot_api_converters/dreambot/dreambot_path_converter.js';
-import {DreamBotPolyAreaConverter} from '../bot_api_converters/dreambot/dreambot_polyarea_converter.js';
-import {DreamBotPositionConverter} from "../bot_api_converters/dreambot/dreambot_position_converter.js";
+import {DreamBotAreasConverter} from '../api_converters/dreambot/dreambot_areas_converter.js';
+import {DreamBotPathConverter} from '../api_converters/dreambot/dreambot_path_converter.js';
+import {DreamBotPolyAreaConverter} from '../api_converters/dreambot/dreambot_polyarea_converter.js';
+import {DreamBotPositionConverter} from "../api_converters/dreambot/dreambot_position_converter.js";
 
-import {RSPeerAreasConverter} from '../bot_api_converters/rspeer/rspeer_areas_converter.js';
-import {RSPeerPathConverter} from '../bot_api_converters/rspeer/rspeer_path_converter.js';
-import {RSPeerPolyAreaConverter} from '../bot_api_converters/rspeer/rspeer_polyarea_converter.js';
-import {RSPeerPositionConverter} from "../bot_api_converters/rspeer/rspeer_position_converter.js";
+import {RSPeerAreasConverter} from '../api_converters/rspeer/rspeer_areas_converter.js';
+import {RSPeerPathConverter} from '../api_converters/rspeer/rspeer_path_converter.js';
+import {RSPeerPolyAreaConverter} from '../api_converters/rspeer/rspeer_polyarea_converter.js';
+import {RSPeerPositionConverter} from "../api_converters/rspeer/rspeer_position_converter.js";
 
-import {QuantumBotAreasConverter} from '../bot_api_converters/quantumbot/quantumbot_areas_converter.js';
-import {QuantumBotPathConverter} from '../bot_api_converters/quantumbot/quantumbot_path_converter.js';
-import {QuantumBotPolyAreaConverter} from '../bot_api_converters/quantumbot/quantumbot_polyarea_converter.js';
-import {QuantumBotPositionConverter} from "../bot_api_converters/quantumbot/quantumbot_position_converter.js";
+import {QuantumBotAreasConverter} from '../api_converters/quantumbot/quantumbot_areas_converter.js';
+import {QuantumBotPathConverter} from '../api_converters/quantumbot/quantumbot_path_converter.js';
+import {QuantumBotPolyAreaConverter} from '../api_converters/quantumbot/quantumbot_polyarea_converter.js';
+import {QuantumBotPositionConverter} from "../api_converters/quantumbot/quantumbot_position_converter.js";
 
-import {RuneMateAreasConverter} from '../bot_api_converters/runemate/runemate_areas_converter.js';
-import {RuneMatePathConverter} from '../bot_api_converters/runemate/runemate_path_converter.js';
-import {RuneMatePolyAreaConverter} from '../bot_api_converters/runemate/runemate_polyarea_converter.js';
-import {RuneMatePositionConverter} from "../bot_api_converters/runemate/runemate_position_converter.js";
+import {RuneMateAreasConverter} from '../api_converters/runemate/runemate_areas_converter.js';
+import {RuneMatePathConverter} from '../api_converters/runemate/runemate_path_converter.js';
+import {RuneMatePolyAreaConverter} from '../api_converters/runemate/runemate_polyarea_converter.js';
+import {RuneMatePositionConverter} from "../api_converters/runemate/runemate_position_converter.js";
+
+import {RuneliteAreasConverter} from "../api_converters/runelite/runelite_areas_converter";
+import {RunelitePathConverter} from "../api_converters/runelite/runelite_path_converter";
+import {RunelitePolyAreaConverter} from "../api_converters/runelite/runelite_polyarea_converter";
+import {RunelitePositionConverter} from "../api_converters/runelite/runelite_position_converter";
 
 const converters = {
+    "RuneLite": {
+        "areas_converter": new RuneliteAreasConverter(),
+        "path_converter": new RunelitePathConverter(),
+        "polyarea_converter": new RunelitePolyAreaConverter(),
+        "position_converter": new RunelitePositionConverter()
+    },
     "OSBot": {
         "areas_converter": new OSBotAreasConverter(),
         "path_converter": new OSBotPathConverter(),

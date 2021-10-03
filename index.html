@@ -17,20 +17,21 @@
     <meta charset="utf-8"/>
 
     <title>Old-school Runescape Map</title>
-    <link rel="icon" type="image/png"
-          href="https://raw.githubusercontent.com/begosrs/osrs-map/master/favicon/avatar.png">
-    <link rel="manifest" href="https://raw.githubusercontent.com/begosrs/osrs-map/master/favicon/manifest.json">
-    <meta name="theme-color" content="#ffffff">
+    <link href="https://raw.githubusercontent.com/begosrs/osrs-map/master/favicon/avatar.png" rel="icon"
+          type="image/png">
+    <link href="https://raw.githubusercontent.com/begosrs/osrs-map/master/favicon/manifest.json" rel="manifest">
+    <meta content="#ffffff" name="theme-color">
 
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"/>
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet"
-          integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css"
-          integrity="sha256-/PVkO2+mUlKqE6wgKVXU5Wh4mx3vncHAxLEdpXrziGo=" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="css/main.css">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css" rel="stylesheet"/>
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+          integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" rel="stylesheet">
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet">
+    <link crossorigin="anonymous"
+          href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.min.css"
+          integrity="sha256-/PVkO2+mUlKqE6wgKVXU5Wh4mx3vncHAxLEdpXrziGo=" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- Get jQuery JS from Google CDN, or fallback to local copy -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -45,25 +46,27 @@
     </script>
 
     <!-- Get Bootstrap JS from Bootstrap CDN, or fallback to local copy -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    <script crossorigin="anonymous"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         window.jQuery.fn.modal || document.write('<script type="text/javascript" src="js/external/bootstrap.min.js\"><\/script>');
     </script>
 
     <!-- Get Leaflet JS from CDNJS, or fallback to local copy -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
-            integrity="sha256-kdEnCVOWosn3TNsGslxB8ffuKdrZoGQdIdPwh7W1CsE=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-kdEnCVOWosn3TNsGslxB8ffuKdrZoGQdIdPwh7W1CsE="
+            src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
     <script>
         window.L || document.write('<script type="text/javascript" src="js/external/leaflet.js\"><\/script>');
     </script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.js"
-            integrity="sha256-u74zWXS2T+G4E4NsM/R8gR8SaTJcq5a0TCks5m+AN9k=" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha256-u74zWXS2T+G4E4NsM/R8gR8SaTJcq5a0TCks5m+AN9k="
+            src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.33.1/sweetalert2.js"></script>
 
     <!-- Try to load main JS module -->
-    <script type="module" src="js/map.js"></script>
+    <script src="js/map.js" type="module"></script>
 </head>
 
 <body>
@@ -72,7 +75,7 @@
         <div id="map"></div>
     </div>
     <div class="slide-panel" id="code-output-panel">
-        <pre id="code-output-pre"><code id="code-output" contenteditable="true"></code></pre>
+        <pre id="code-output-pre"><code contenteditable="true" id="code-output"></code></pre>
     </div>
     <div class="slide-panel" id="settings-panel">
         <form class="form-horizontal">
@@ -88,9 +91,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-lg-5" for="bot-api">Bot type</label>
+                <label class="control-label col-lg-5" for="bot-api">Api</label>
                 <div class="col-lg-7">
                     <select class="form-control" id="bot-api">
+                        <option>RuneLite</option>
                         <option>TRiBot</option>
                         <option>OSBot</option>
                         <option>DreamBot</option>
