@@ -38,10 +38,10 @@ import {RuneMatePathConverter} from '../api_converters/runemate/runemate_path_co
 import {RuneMatePolyAreaConverter} from '../api_converters/runemate/runemate_polyarea_converter.js';
 import {RuneMatePositionConverter} from "../api_converters/runemate/runemate_position_converter.js";
 
-import {RuneliteAreasConverter} from "../api_converters/runelite/runelite_areas_converter";
-import {RunelitePathConverter} from "../api_converters/runelite/runelite_path_converter";
-import {RunelitePolyAreaConverter} from "../api_converters/runelite/runelite_polyarea_converter";
-import {RunelitePositionConverter} from "../api_converters/runelite/runelite_position_converter";
+import {RuneliteAreasConverter} from "../api_converters/runelite/runelite_areas_converter.js";
+import {RunelitePathConverter} from "../api_converters/runelite/runelite_path_converter.js";
+import {RunelitePolyAreaConverter} from "../api_converters/runelite/runelite_polyarea_converter.js";
+import {RunelitePositionConverter} from "../api_converters/runelite/runelite_position_converter.js";
 
 const converters = {
     "RuneLite": {
